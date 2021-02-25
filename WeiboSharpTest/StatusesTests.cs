@@ -8,12 +8,12 @@ using WeiboSharp.API.Builder;
 namespace WeiboSharpTest
 {
     [TestClass]
-    public class ContainerTests
+    public class StatusesTests
     {
         private const string ID = "1669879400";
         private IWeiboApi _api;
 
-        public ContainerTests()
+        public StatusesTests()
         {
             _api = WeiboApiBuilder.CreateBuilder().Build();
         }
