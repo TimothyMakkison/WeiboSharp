@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeiboSharp", "WeiboSharp\WeiboSharp.csproj", "{8D81E8AC-2CE9-4E26-A34C-93FBA92BCBCA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EAA7BEEE-253A-462F-8EA9-7E026C3A4646}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{FF3FF278-CA9D-4000-B534-12F86BF67ABF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0503B2FB-6AD9-40AA-8548-E1C63B334EF3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Experiments", "Experiment\Experiments.csproj", "{134601D9-28C5-4377-9EB5-DB17CF6810C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstagramApiSharp", "..\..\..\Desktop\InstagramApiSharp-master\src\InstagramApiSharp\InstagramApiSharp.csproj", "{0B839DBA-FA27-45BA-8ED2-ABF315729439}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeiboSharpTest", "WeiboSharpTest\WeiboSharpTest.csproj", "{86152238-5989-4EEF-A768-D780AB46C74D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D81E8AC-2CE9-4E26-A34C-93FBA92BCBCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D81E8AC-2CE9-4E26-A34C-93FBA92BCBCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D81E8AC-2CE9-4E26-A34C-93FBA92BCBCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D81E8AC-2CE9-4E26-A34C-93FBA92BCBCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{134601D9-28C5-4377-9EB5-DB17CF6810C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{134601D9-28C5-4377-9EB5-DB17CF6810C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{134601D9-28C5-4377-9EB5-DB17CF6810C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{134601D9-28C5-4377-9EB5-DB17CF6810C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B839DBA-FA27-45BA-8ED2-ABF315729439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B839DBA-FA27-45BA-8ED2-ABF315729439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B839DBA-FA27-45BA-8ED2-ABF315729439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B839DBA-FA27-45BA-8ED2-ABF315729439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86152238-5989-4EEF-A768-D780AB46C74D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86152238-5989-4EEF-A768-D780AB46C74D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86152238-5989-4EEF-A768-D780AB46C74D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86152238-5989-4EEF-A768-D780AB46C74D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D81E8AC-2CE9-4E26-A34C-93FBA92BCBCA} = {EAA7BEEE-253A-462F-8EA9-7E026C3A4646}
+		{134601D9-28C5-4377-9EB5-DB17CF6810C6} = {0503B2FB-6AD9-40AA-8548-E1C63B334EF3}
+		{0B839DBA-FA27-45BA-8ED2-ABF315729439} = {EAA7BEEE-253A-462F-8EA9-7E026C3A4646}
+		{86152238-5989-4EEF-A768-D780AB46C74D} = {0503B2FB-6AD9-40AA-8548-E1C63B334EF3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5BD8EB95-9F8C-4D03-8F21-31A6C0388BDD}
+	EndGlobalSection
+EndGlobal
