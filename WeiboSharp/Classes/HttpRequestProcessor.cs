@@ -78,6 +78,13 @@ namespace WeiboSharp.Classes
             return await response.Content.ReadAsStringAsync();
         }
 
+        //TODO implement DelayAsync 
+        private async Task DelayAsync()
+        {
+            if (_delay.Exist)
+                await Task.Delay(_delay.Value);
+        }
+
         public async Task<string> GetJsonAsync(Uri requestUri)
         {
             Client.DefaultRequestHeaders.ConnectionClose = false;
@@ -87,6 +94,23 @@ namespace WeiboSharp.Classes
             var response = await Client.GetAsync(requestUri);
             LogHttpResponse(response);
             return await response.Content.ReadAsStringAsync();
+        }
+        public async Task<IResult<T>> Safe<T>(Func<IResult<T>> function)
+        {
+            try
+            {
+                return function();
+            }
+            catch (HttpRequestException httpException)
+            {
+                _logger?.LogException(httpException);
+                return Result.Fail(httpException, default(T), ResponseType.NetworkProblem);
+            }
+            catch (Exception exception)
+            {
+                _logger?.LogException(exception);
+                return Result.Fail<T>(exception);
+            }
         }
 
         private void LogHttpRequest(HttpRequestMessage request)

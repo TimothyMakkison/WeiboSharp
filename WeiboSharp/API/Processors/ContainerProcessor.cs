@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using WeiboSharp.Classes;
@@ -21,6 +20,7 @@ namespace WeiboSharp.API.Processors
         private readonly IWeiboLogger _logger;
         private readonly UserSessionData _user;
         private readonly UserAuthValidate _userAuthValidate;
+        private readonly IProcessorHelper _processorHelper;
 
         public ContainerProcessor(AndroidDevice deviceInfo,
                          HttpHelper httpHelper,
@@ -28,7 +28,8 @@ namespace WeiboSharp.API.Processors
                          WeiboApi weiboApi,
                          IWeiboLogger logger,
                          UserSessionData user,
-                         UserAuthValidate userAuthValidate)
+                         UserAuthValidate userAuthValidate,
+                         IProcessorHelper processorHelper)
         {
             _deviceInfo = deviceInfo;
             _httpHelper = httpHelper;
@@ -37,20 +38,19 @@ namespace WeiboSharp.API.Processors
             _logger = logger;
             _user = user;
             _userAuthValidate = userAuthValidate;
+            _processorHelper = processorHelper;
         }
 
         public async Task<IResult<UserResponse>> GetUserByIdAsync(string uid)
         {
-            var url = string.Format(WeiboApiConstants.CONTAINER_GET_USER, uid);
-            Uri uri = new Uri(url);
+            return await _processorHelper.HttpTryDo(async () =>
+            {
+                var url = string.Format(WeiboApiConstants.CONTAINER_GET_USER, uid);
+                Uri uri = new Uri(url);
 
-            var response = await _httpRequestProcessor.GetAsync(uri);
-            //using (Stream resStream = await response.Content.ReadAsStreamAsync())
-            //{
-            //    StreamReader reader = new StreamReader(resStream, Encoding.UTF8);
-            //    return Result.Success(reader.ReadToEnd());
-            //}
-            return await response.ConvertResponseAsync<UserResponse>();
+                var response = await _httpRequestProcessor.GetAsync(uri);
+                return await response.ConvertResponseAsync<UserResponse>();
+            });
         }
 
         public async Task<IResult<ContainerUserInfoData>> GetUserInfoByIdAsync(string uid)
@@ -73,7 +73,7 @@ namespace WeiboSharp.API.Processors
             Uri uri = new Uri(url);
 
             var response = await _httpRequestProcessor.GetAsync(uri);
-           
+
             return await response.ConvertResponseAsync<PageData>();
         }
     }

@@ -19,6 +19,7 @@ namespace WeiboSharp.API
 
         private IRequestDelay _delay = RequestDelay.Empty();
         private readonly IHttpRequestProcessor _httpRequestProcessor;
+        private readonly IProcessorHelper _processorHelper;
         private readonly IWeiboLogger _logger;
         private WeiboApiVersionType _apiVersionType;
         private WeiboApiVersion _apiVersion;
@@ -53,6 +54,7 @@ namespace WeiboSharp.API
             //_apiVersionType = apiVersionType;
             //_apiVersion = WeiboApiVersionList.GetApiVersionList().GetApiVersion(apiVersionType);
             _httpHelper = new HttpHelper(_apiVersion, httpRequestProcessor, this);
+            _processorHelper = new ProcessorHelper(_logger);
 
             InitialiseProcessors();
         }
@@ -91,7 +93,7 @@ namespace WeiboSharp.API
 
         private void InitialiseProcessors()
         {
-            _containerProcessor = new ContainerProcessor(_deviceInfo, _httpHelper, _httpRequestProcessor, this, _logger, _user, _userAuthValidate);
+            _containerProcessor = new ContainerProcessor(_deviceInfo, _httpHelper, _httpRequestProcessor, this, _logger, _user, _userAuthValidate, _processorHelper);
         }
 
         public Task<IResult<InstaLoginResult>> LoginAsync(bool isNewLogin)
