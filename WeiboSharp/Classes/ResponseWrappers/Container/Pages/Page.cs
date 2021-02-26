@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
 
-namespace WeiboSharp.Classes.ResponseWrappers.Container
+namespace WeiboSharp.Classes.ResponseWrappers
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class CardlistInfo
     {
         [JsonProperty("containerid")]
@@ -22,15 +20,6 @@ namespace WeiboSharp.Classes.ResponseWrappers.Container
 
         [JsonProperty("since_id")]
         public long SinceId { get; set; }
-    }
-
-    public class Visible
-    {
-        [JsonProperty("type")]
-        public int Type { get; set; }
-
-        [JsonProperty("list_id")]
-        public int ListId { get; set; }
     }
 
     public class Badge
@@ -156,98 +145,6 @@ namespace WeiboSharp.Classes.ResponseWrappers.Container
         public int Hongrenjie2020 { get; set; }
     }
 
-    public class User
-    {
-        [JsonProperty("id")]
-        public int Id { get; set; }
-
-        [JsonProperty("screen_name")]
-        public string ScreenName { get; set; }
-
-        [JsonProperty("profile_image_url")]
-        public string ProfileImageUrl { get; set; }
-
-        [JsonProperty("profile_url")]
-        public string ProfileUrl { get; set; }
-
-        [JsonProperty("statuses_count")]
-        public int StatusesCount { get; set; }
-
-        [JsonProperty("verified")]
-        public bool Verified { get; set; }
-
-        [JsonProperty("verified_type")]
-        public int VerifiedType { get; set; }
-
-        [JsonProperty("verified_type_ext")]
-        public int VerifiedTypeExt { get; set; }
-
-        [JsonProperty("verified_reason")]
-        public string VerifiedReason { get; set; }
-
-        [JsonProperty("close_blue_v")]
-        public bool CloseBlueV { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("gender")]
-        public string Gender { get; set; }
-
-        [JsonProperty("mbtype")]
-        public int Mbtype { get; set; }
-
-        [JsonProperty("urank")]
-        public int Urank { get; set; }
-
-        [JsonProperty("mbrank")]
-        public int Mbrank { get; set; }
-
-        [JsonProperty("follow_me")]
-        public bool FollowMe { get; set; }
-
-        [JsonProperty("following")]
-        public bool Following { get; set; }
-
-        [JsonProperty("followers_count")]
-        public int FollowersCount { get; set; }
-
-        [JsonProperty("follow_count")]
-        public int FollowCount { get; set; }
-
-        [JsonProperty("cover_image_phone")]
-        public string CoverImagePhone { get; set; }
-
-        [JsonProperty("avatar_hd")]
-        public string AvatarHd { get; set; }
-
-        [JsonProperty("like")]
-        public bool Like { get; set; }
-
-        [JsonProperty("like_me")]
-        public bool LikeMe { get; set; }
-
-        [JsonProperty("badge")]
-        public Badge Badge { get; set; }
-    }
-
-    public class NumberDisplayStrategy
-    {
-        [JsonProperty("apply_scenario_flag")]
-        public int ApplyScenarioFlag { get; set; }
-
-        [JsonProperty("display_text_min_number")]
-        public int DisplayTextMinNumber { get; set; }
-
-        [JsonProperty("display_text")]
-        public string DisplayText { get; set; }
-    }
-
-    public class AlchemyParams
-    {
-        [JsonProperty("ug_red_envelope")]
-        public bool UgRedEnvelope { get; set; }
-    }
 
     public class EditConfig
     {
@@ -346,48 +243,6 @@ namespace WeiboSharp.Classes.ResponseWrappers.Container
 
         [JsonProperty("urls")]
         public Urls Urls { get; set; }
-    }
-
-    public class Geo
-    {
-        [JsonProperty("width")]
-        public int Width { get; set; }
-
-        [JsonProperty("height")]
-        public int Height { get; set; }
-
-        [JsonProperty("croped")]
-        public bool Croped { get; set; }
-    }
-
-    public class Large
-    {
-        [JsonProperty("size")]
-        public string Size { get; set; }
-
-        [JsonProperty("url")]
-        public string Url { get; set; }
-
-        [JsonProperty("geo")]
-        public Geo Geo { get; set; }
-    }
-
-    public class Pic
-    {
-        [JsonProperty("pid")]
-        public string Pid { get; set; }
-
-        [JsonProperty("url")]
-        public string Url { get; set; }
-
-        [JsonProperty("size")]
-        public string Size { get; set; }
-
-        [JsonProperty("geo")]
-        public Geo Geo { get; set; }
-
-        [JsonProperty("large")]
-        public Large Large { get; set; }
     }
 
     public class RetweetedStatus
