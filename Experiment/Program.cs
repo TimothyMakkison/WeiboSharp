@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using WeiboSharp.Classes.ResponseWrappers;
 using Newtonsoft.Json;
 using System.IO;
+using WeiboSharp.Logger;
+using System.Threading.Tasks;
 
 namespace Experiment
 {
@@ -12,16 +14,25 @@ namespace Experiment
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            string id = "2302831669879400";
+            string id = "1669879400";
             string content = File.ReadAllText(@"C:\Users\timma\Desktop\http.txt");
 
 
-            var a = WeiboApiBuilder.CreateBuilder().Build();
-            var user = a.ContainerProcessor.GetUserByIdAsync(id).Result;
-            var info = a.ContainerProcessor.GetUserInfoByIdAsync(id).Result;
+            var api = WeiboApiBuilder.CreateBuilder()
+                .UseLogger(new DebugLogger(LogLevel.Request))
+                .Build();
+            var user = api.ContainerProcessor
+                .GetUserByIdAsync(id)
+                ;
+            var info = api.ContainerProcessor
+                .GetUserInfoByIdAsync(id);
+            var page = api.ContainerProcessor
+                .GetUserPageById(id, 1);
+            //var bid = page.Value.Cards[0].Mblog.Bid;
 
-            var b = JsonConvert.DeserializeObject<BaseResponse<object>>(content);
+            Task.WaitAll(user, info, page);
+
+            //page.Result.Value.Cards[0].Mblog.
         }
     }
 }
