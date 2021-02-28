@@ -17,6 +17,7 @@ namespace WeiboSharp.API.Processors
         private readonly IWeiboLogger _logger;
         private readonly UserSessionData _user;
         private readonly UserAuthValidate _userAuthValidate;
+        private readonly IProcessorHelper _processorHelper;
 
         public StatusesProcessor(AndroidDevice deviceInfo,
                          HttpHelper httpHelper,
@@ -24,7 +25,8 @@ namespace WeiboSharp.API.Processors
                          WeiboApi weiboApi,
                          IWeiboLogger logger,
                          UserSessionData user,
-                         UserAuthValidate userAuthValidate)
+                         UserAuthValidate userAuthValidate,
+                         IProcessorHelper processorHelper)
         {
             _deviceInfo = deviceInfo;
             _httpHelper = httpHelper;
@@ -33,6 +35,7 @@ namespace WeiboSharp.API.Processors
             _logger = logger;
             _user = user;
             _userAuthValidate = userAuthValidate;
+            _processorHelper = processorHelper;
         }
 
         /// <summary>
@@ -42,11 +45,14 @@ namespace WeiboSharp.API.Processors
         /// <returns></returns>
         public async Task<IResult<StatusShowResponse>> ShowStatusAsync(string identifier)
         {
-            var url = string.Format(WeiboApiConstants.STATUS_GET_CONTENT, identifier);
-            Uri uri = new Uri(url);
+            return await _processorHelper.HttpTryDo(async () =>
+            {
+                var url = string.Format(WeiboApiConstants.STATUS_GET_CONTENT, identifier);
+                Uri uri = new Uri(url);
 
-            var response = await _httpRequestProcessor.GetAsync(uri);
-            return await response.ConvertResponseAsync<StatusShowResponse>();
+                var response = await _httpRequestProcessor.GetAsync(uri);
+                return await response.ConvertResponseAsync<StatusShowResponse>();
+            });
         }
     }
 }
