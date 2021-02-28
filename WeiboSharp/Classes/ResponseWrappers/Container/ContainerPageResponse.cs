@@ -262,18 +262,6 @@ namespace WeiboSharp.Classes.ResponseWrappers
         public Urls Urls { get; set; }
     }
 
-    public partial class MediaInfo
-    {
-        [JsonProperty("stream_url")]
-        public Uri StreamUrl { get; set; }
-
-        [JsonProperty("stream_url_hd")]
-        public Uri StreamUrlHd { get; set; }
-
-        [JsonProperty("duration")]
-        public double Duration { get; set; }
-    }
-
     public partial class PurplePagePic
     {
         [JsonProperty("url")]
@@ -298,18 +286,6 @@ namespace WeiboSharp.Classes.ResponseWrappers
         public long? Height { get; set; }
     }
 
-    public partial class Urls
-    {
-        [JsonProperty("mp4_720p_mp4")]
-        public Uri Mp4720PMp4 { get; set; }
-
-        [JsonProperty("mp4_hd_mp4")]
-        public Uri Mp4HdMp4 { get; set; }
-
-        [JsonProperty("mp4_ld_mp4")]
-        public Uri Mp4LdMp4 { get; set; }
-    }
-
     public partial class MblogPic
     {
         [JsonProperty("pid")]
@@ -328,18 +304,7 @@ namespace WeiboSharp.Classes.ResponseWrappers
         public PurpleLarge Large { get; set; }
     }
 
-    public partial class PurpleGeo
-    {
-        [JsonProperty("width")]
-        public long Width { get; set; }
-
-        [JsonProperty("height")]
-        public long Height { get; set; }
-
-        [JsonProperty("croped")]
-        public bool Croped { get; set; }
-    }
-
+   
     public partial class PurpleLarge
     {
         [JsonProperty("size")]
