@@ -54,26 +54,27 @@ namespace WeiboSharp.API.Processors
 
         public async Task<IResult<ContainerInfoResponse>> GetUserInfoByIdAsync(string uid)
         {
-            var url = string.Format(WeiboApiConstants.CONTAINER_GET_USER_INFO, uid);
-            Uri uri = new Uri(url);
+            return await _processorHelper.HttpTryDo(async () =>
+            {
+                var url = string.Format(WeiboApiConstants.CONTAINER_GET_USER_INFO, uid);
+                Uri uri = new Uri(url);
 
-            var response = await _httpRequestProcessor.GetAsync(uri);
-            var content = await response.Content.ReadAsByteArrayAsync();
-
-            var ut = Encoding.UTF8.GetString(content);
-
-            var info = JsonConvert.DeserializeObject<BaseResponse<ContainerInfoResponse>>(ut);
-            return Result.Success(info.Data);
+                var response = await _httpRequestProcessor.GetAsync(uri);
+                var content = await response.Content.ReadAsStringAsync();
+                return await response.ConvertResponseAsync<ContainerInfoResponse>();
+            });
         }
 
         public async Task<IResult<ContainerPageResponse>> GetUserPageById(string uid, int page)
         {
-            var url = string.Format(WeiboApiConstants.CONTAINER_GET_USER_PAGE, uid, page);
-            Uri uri = new Uri(url);
+            return await _processorHelper.HttpTryDo(async () =>
+            {
+                var url = string.Format(WeiboApiConstants.CONTAINER_GET_USER_PAGE, uid, page);
+                Uri uri = new Uri(url);
 
-            var response = await _httpRequestProcessor.GetAsync(uri);
-
-            return await response.ConvertResponseAsync<ContainerPageResponse>();
+                var response = await _httpRequestProcessor.GetAsync(uri);
+                return await response.ConvertResponseAsync<ContainerPageResponse>();
+            });
         }
     }
 }
