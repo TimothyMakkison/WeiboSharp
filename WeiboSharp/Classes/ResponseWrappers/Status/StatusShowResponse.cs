@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WeiboSharp.Classes.ResponseWrappers
 {
-    public partial class StatusShowResponse
+    public partial class StatusShowData
     {
         [JsonProperty("visible")]
         public Visible Visible { get; set; }
@@ -18,8 +18,17 @@ namespace WeiboSharp.Classes.ResponseWrappers
         [JsonProperty("mid")]
         public string Mid { get; set; }
 
+        [JsonProperty("edit_count", NullValueHandling = NullValueHandling.Ignore)]
+        public long? EditCount { get; set; }
+
         [JsonProperty("can_edit")]
         public bool CanEdit { get; set; }
+
+        [JsonProperty("edit_at", NullValueHandling = NullValueHandling.Ignore)]
+        public string EditAt { get; set; }
+
+        [JsonProperty("version", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Version { get; set; }
 
         [JsonProperty("show_additional_indication")]
         public long ShowAdditionalIndication { get; set; }
@@ -42,13 +51,13 @@ namespace WeiboSharp.Classes.ResponseWrappers
         [JsonProperty("pic_types")]
         public string PicTypes { get; set; }
 
-        [JsonProperty("thumbnail_pic")]
+        [JsonProperty("thumbnail_pic", NullValueHandling = NullValueHandling.Ignore)]
         public Uri ThumbnailPic { get; set; }
 
-        [JsonProperty("bmiddle_pic")]
+        [JsonProperty("bmiddle_pic", NullValueHandling = NullValueHandling.Ignore)]
         public Uri BmiddlePic { get; set; }
 
-        [JsonProperty("original_pic")]
+        [JsonProperty("original_pic", NullValueHandling = NullValueHandling.Ignore)]
         public Uri OriginalPic { get; set; }
 
         [JsonProperty("is_paid")]
@@ -60,14 +69,14 @@ namespace WeiboSharp.Classes.ResponseWrappers
         [JsonProperty("user")]
         public User User { get; set; }
 
-        [JsonProperty("picStatus")]
+        [JsonProperty("picStatus", NullValueHandling = NullValueHandling.Ignore)]
         public string PicStatus { get; set; }
 
         [JsonProperty("reposts_count")]
-        public long RepostsCount { get; set; }
+        public string RepostsCount { get; set; }
 
         [JsonProperty("comments_count")]
-        public long CommentsCount { get; set; }
+        public string CommentsCount { get; set; }
 
         [JsonProperty("attitudes_count")]
         public long AttitudesCount { get; set; }
@@ -96,17 +105,11 @@ namespace WeiboSharp.Classes.ResponseWrappers
         [JsonProperty("more_info_type")]
         public long MoreInfoType { get; set; }
 
-        [JsonProperty("cardid")]
-        public string Cardid { get; set; }
-
         [JsonProperty("number_display_strategy")]
         public NumberDisplayStrategy NumberDisplayStrategy { get; set; }
 
         [JsonProperty("content_auth")]
         public long ContentAuth { get; set; }
-
-        [JsonProperty("hide_hot_flow")]
-        public long HideHotFlow { get; set; }
 
         [JsonProperty("pic_num")]
         public long PicNum { get; set; }
@@ -114,7 +117,10 @@ namespace WeiboSharp.Classes.ResponseWrappers
         [JsonProperty("alchemy_params")]
         public AlchemyParams AlchemyParams { get; set; }
 
-        [JsonProperty("pics")]
+        [JsonProperty("page_info", NullValueHandling = NullValueHandling.Ignore)]
+        public DataPageInfo PageInfo { get; set; }
+
+        [JsonProperty("pics", NullValueHandling = NullValueHandling.Ignore)]
         public List<DataPic> Pics { get; set; }
 
         [JsonProperty("bid")]
@@ -128,15 +134,39 @@ namespace WeiboSharp.Classes.ResponseWrappers
 
         [JsonProperty("ok")]
         public long Ok { get; set; }
+
+        [JsonProperty("pic_focus_point", NullValueHandling = NullValueHandling.Ignore)]
+        public List<PicFocusPoint> PicFocusPoint { get; set; }
+
+        [JsonProperty("pic_rectangle_object", NullValueHandling = NullValueHandling.Ignore)]
+        public List<PicRectangleObject> PicRectangleObject { get; set; }
+
+        [JsonProperty("pic_flag", NullValueHandling = NullValueHandling.Ignore)]
+        public long? PicFlag { get; set; }
+
+        [JsonProperty("ad_state", NullValueHandling = NullValueHandling.Ignore)]
+        public long? AdState { get; set; }
+
+        [JsonProperty("cardid", NullValueHandling = NullValueHandling.Ignore)]
+        public string Cardid { get; set; }
+
+        [JsonProperty("hide_hot_flow", NullValueHandling = NullValueHandling.Ignore)]
+        public long? HideHotFlow { get; set; }
+
+        [JsonProperty("reward_scheme", NullValueHandling = NullValueHandling.Ignore)]
+        public string RewardScheme { get; set; }
+
+        [JsonProperty("safe_tags", NullValueHandling = NullValueHandling.Ignore)]
+        public long? SafeTags { get; set; }
+
+        [JsonProperty("fid", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Fid { get; set; }
     }
 
-    public partial class Visible
+    public partial class AlchemyParams
     {
-        [JsonProperty("type")]
-        public long Type { get; set; }
-
-        [JsonProperty("list_id")]
-        public long ListId { get; set; }
+        [JsonProperty("ug_red_envelope")]
+        public bool UgRedEnvelope { get; set; }
     }
 
     public partial class Button
@@ -160,6 +190,99 @@ namespace WeiboSharp.Classes.ResponseWrappers
         public long Uid { get; set; }
     }
 
+    public partial class NumberDisplayStrategy
+    {
+        [JsonProperty("apply_scenario_flag")]
+        public long ApplyScenarioFlag { get; set; }
+
+        [JsonProperty("display_text_min_number")]
+        public long DisplayTextMinNumber { get; set; }
+
+        [JsonProperty("display_text")]
+        public string DisplayText { get; set; }
+    }
+
+    public partial class DataPageInfo
+    {
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        [JsonProperty("object_type")]
+        public long ObjectType { get; set; }
+
+        [JsonProperty("page_pic")]
+        public PurplePagePic PagePic { get; set; }
+
+        [JsonProperty("page_url")]
+        public Uri PageUrl { get; set; }
+
+        [JsonProperty("page_title")]
+        public string PageTitle { get; set; }
+
+        [JsonProperty("content1")]
+        public string Content1 { get; set; }
+
+        [JsonProperty("url_ori", NullValueHandling = NullValueHandling.Ignore)]
+        public Uri UrlOri { get; set; }
+
+        [JsonProperty("object_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string ObjectId { get; set; }
+
+        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
+        public string Title { get; set; }
+
+        [JsonProperty("content2", NullValueHandling = NullValueHandling.Ignore)]
+        public string Content2 { get; set; }
+
+        [JsonProperty("video_orientation", NullValueHandling = NullValueHandling.Ignore)]
+        public string VideoOrientation { get; set; }
+
+        [JsonProperty("play_count", NullValueHandling = NullValueHandling.Ignore)]
+        public string PlayCount { get; set; }
+
+        [JsonProperty("media_info", NullValueHandling = NullValueHandling.Ignore)]
+        public MediaInfo MediaInfo { get; set; }
+
+        [JsonProperty("urls", NullValueHandling = NullValueHandling.Ignore)]
+        public Urls Urls { get; set; }
+    }
+
+    public partial class PicFocusPoint
+    {
+        [JsonProperty("focus_point")]
+        public FocusPoint FocusPoint { get; set; }
+
+        [JsonProperty("pic_id")]
+        public string PicId { get; set; }
+    }
+
+    public partial class FocusPoint
+    {
+        [JsonProperty("left")]
+        public double Left { get; set; }
+
+        [JsonProperty("top")]
+        public double Top { get; set; }
+
+        [JsonProperty("width")]
+        public double Width { get; set; }
+
+        [JsonProperty("height")]
+        public double Height { get; set; }
+
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Type { get; set; }
+    }
+
+    public partial class PicRectangleObject
+    {
+        [JsonProperty("rectangle_objects")]
+        public List<FocusPoint> RectangleObjects { get; set; }
+
+        [JsonProperty("pic_id")]
+        public string PicId { get; set; }
+    }
+
     public partial class DataPic
     {
         [JsonProperty("pid")]
@@ -172,9 +295,21 @@ namespace WeiboSharp.Classes.ResponseWrappers
         public string Size { get; set; }
 
         [JsonProperty("geo")]
-        public FluffyGeo Geo { get; set; }
+        public PurpleGeo Geo { get; set; }
 
         [JsonProperty("large")]
-        public FluffyLarge Large { get; set; }
+        public PurpleLarge Large { get; set; }
+    }
+
+    public partial class PurpleLarge
+    {
+        [JsonProperty("size")]
+        public string Size { get; set; }
+
+        [JsonProperty("url")]
+        public Uri Url { get; set; }
+
+        [JsonProperty("geo")]
+        public PurpleGeo Geo { get; set; }
     }
 }
