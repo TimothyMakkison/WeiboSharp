@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using WeiboSharp.Classes;
 using WeiboSharp.Classes.Android.DeviceInfo;
 using WeiboSharp.Classes.ResponseWrappers;
-using WeiboSharp.Classes.ResponseWrappers.Container;
 using WeiboSharp.Helpers;
 using WeiboSharp.Logger;
 
@@ -41,13 +40,13 @@ namespace WeiboSharp.API.Processors
         /// </summary>
         /// <param name="identifier">Either alphanumeric mid or long id.</param>
         /// <returns></returns>
-        public async Task<IResult<PostContentResponse>> ShowStatusAsync(string identifier)
+        public async Task<IResult<StatusShowResponse>> ShowStatusAsync(string identifier)
         {
             var url = string.Format(WeiboApiConstants.STATUS_GET_CONTENT, identifier);
             Uri uri = new Uri(url);
 
             var response = await _httpRequestProcessor.GetAsync(uri);
-            return await response.ConvertResponseAsync<PostContentResponse>();
+            return await response.ConvertResponseAsync<StatusShowResponse>();
         }
     }
 }

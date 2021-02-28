@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using WeiboSharp.Classes;
 using WeiboSharp.Classes.Android.DeviceInfo;
 using WeiboSharp.Classes.ResponseWrappers;
-using WeiboSharp.Classes.ResponseWrappers.Container;
 using WeiboSharp.Helpers;
 using WeiboSharp.Logger;
 
@@ -41,7 +40,7 @@ namespace WeiboSharp.API.Processors
             _processorHelper = processorHelper;
         }
 
-        public async Task<IResult<UserResponse>> GetUserByIdAsync(string uid)
+        public async Task<IResult<ContainerUserResponse>> GetUserByIdAsync(string uid)
         {
             return await _processorHelper.HttpTryDo(async () =>
             {
@@ -49,11 +48,11 @@ namespace WeiboSharp.API.Processors
                 Uri uri = new Uri(url);
 
                 var response = await _httpRequestProcessor.GetAsync(uri);
-                return await response.ConvertResponseAsync<UserResponse>();
+                return await response.ConvertResponseAsync<ContainerUserResponse>();
             });
         }
 
-        public async Task<IResult<ContainerUserInfoData>> GetUserInfoByIdAsync(string uid)
+        public async Task<IResult<ContainerInfoResponse>> GetUserInfoByIdAsync(string uid)
         {
             var url = string.Format(WeiboApiConstants.CONTAINER_GET_USER_INFO, uid);
             Uri uri = new Uri(url);
@@ -63,18 +62,18 @@ namespace WeiboSharp.API.Processors
 
             var ut = Encoding.UTF8.GetString(content);
 
-            var info = JsonConvert.DeserializeObject<BaseResponse<ContainerUserInfoData>>(ut);
+            var info = JsonConvert.DeserializeObject<BaseResponse<ContainerInfoResponse>>(ut);
             return Result.Success(info.Data);
         }
 
-        public async Task<IResult<PageData>> GetUserPageById(string uid, int page)
+        public async Task<IResult<ContainerPageResponse>> GetUserPageById(string uid, int page)
         {
             var url = string.Format(WeiboApiConstants.CONTAINER_GET_USER_PAGE, uid, page);
             Uri uri = new Uri(url);
 
             var response = await _httpRequestProcessor.GetAsync(uri);
 
-            return await response.ConvertResponseAsync<PageData>();
+            return await response.ConvertResponseAsync<ContainerPageResponse>();
         }
     }
 }

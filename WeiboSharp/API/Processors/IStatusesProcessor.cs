@@ -6,6 +6,6 @@ namespace WeiboSharp.API.Processors
 {
     public interface IStatusesProcessor
     {
-        Task<IResult<PostContentResponse>> ShowStatusAsync(string identifier);
+        Task<IResult<StatusShowResponse>> ShowStatusAsync(string identifier);
     }
 }
