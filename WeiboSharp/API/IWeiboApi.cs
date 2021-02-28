@@ -145,7 +145,7 @@ namespace WeiboSharp.API
         UserSessionData GetLoggedUser();
 
         IContainerProcessor ContainerProcessor { get; }
-
+        IStatusesProcessor StatusesProcessor { get; }
 
 
         ///// <summary>

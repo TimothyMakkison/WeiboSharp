@@ -16,6 +16,7 @@ namespace WeiboSharp.API
         #region Variables and properties
 
         private IContainerProcessor _containerProcessor;
+        private IStatusesProcessor _statusesProcessor;
 
         private IRequestDelay _delay = RequestDelay.Empty();
         private readonly IHttpRequestProcessor _httpRequestProcessor;
@@ -62,6 +63,7 @@ namespace WeiboSharp.API
         #endregion Constructor
 
         public IContainerProcessor ContainerProcessor => _containerProcessor;
+        public IStatusesProcessor StatusesProcessor => _statusesProcessor;
 
         /// <summary>
         ///     Indicates whether user authenticated or not
@@ -94,6 +96,7 @@ namespace WeiboSharp.API
         private void InitialiseProcessors()
         {
             _containerProcessor = new ContainerProcessor(_deviceInfo, _httpHelper, _httpRequestProcessor, this, _logger, _user, _userAuthValidate, _processorHelper);
+            _statusesProcessor =  new StatusesProcessor(_deviceInfo, _httpHelper, _httpRequestProcessor, this, _logger, _user, _userAuthValidate, _processorHelper);
         }
 
         public Task<IResult<InstaLoginResult>> LoginAsync(bool isNewLogin)
