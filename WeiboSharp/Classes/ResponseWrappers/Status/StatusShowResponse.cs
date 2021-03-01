@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WeiboSharp.Classes.ResponseWrappers
 {
-    public partial class StatusShowData
+    public partial class StatusShowResponse
     {
         [JsonProperty("visible")]
         public Visible Visible { get; set; }
@@ -163,12 +163,6 @@ namespace WeiboSharp.Classes.ResponseWrappers
         public long? Fid { get; set; }
     }
 
-    public partial class AlchemyParams
-    {
-        [JsonProperty("ug_red_envelope")]
-        public bool UgRedEnvelope { get; set; }
-    }
-
     public partial class Button
     {
         [JsonProperty("type")]
@@ -188,18 +182,6 @@ namespace WeiboSharp.Classes.ResponseWrappers
     {
         [JsonProperty("uid")]
         public long Uid { get; set; }
-    }
-
-    public partial class NumberDisplayStrategy
-    {
-        [JsonProperty("apply_scenario_flag")]
-        public long ApplyScenarioFlag { get; set; }
-
-        [JsonProperty("display_text_min_number")]
-        public long DisplayTextMinNumber { get; set; }
-
-        [JsonProperty("display_text")]
-        public string DisplayText { get; set; }
     }
 
     public partial class DataPageInfo
@@ -299,17 +281,5 @@ namespace WeiboSharp.Classes.ResponseWrappers
 
         [JsonProperty("large")]
         public PurpleLarge Large { get; set; }
-    }
-
-    public partial class PurpleLarge
-    {
-        [JsonProperty("size")]
-        public string Size { get; set; }
-
-        [JsonProperty("url")]
-        public Uri Url { get; set; }
-
-        [JsonProperty("geo")]
-        public PurpleGeo Geo { get; set; }
     }
 }
