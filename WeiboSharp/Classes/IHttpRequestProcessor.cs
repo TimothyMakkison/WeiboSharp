@@ -23,6 +23,9 @@ namespace WeiboSharp.Classes
 
         Task<string> GetJsonAsync(Uri requestUri);
 
+        Task<string> GetFileAsync(Uri requestUri, string filePath);
+
+
         IRequestDelay Delay { get; set; }
     }
 }

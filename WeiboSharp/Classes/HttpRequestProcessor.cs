@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using WeiboSharp.Classes.Android.DeviceInfo;
@@ -95,24 +96,26 @@ namespace WeiboSharp.Classes
             LogHttpResponse(response);
             return await response.Content.ReadAsStringAsync();
         }
-        public async Task<IResult<T>> Safe<T>(Func<IResult<T>> function)
-        {
-            try
-            {
-                return function();
-            }
-            catch (HttpRequestException httpException)
-            {
-                _logger?.LogException(httpException);
-                return Result.Fail(httpException, default(T), ResponseType.NetworkProblem);
-            }
-            catch (Exception exception)
-            {
-                _logger?.LogException(exception);
-                return Result.Fail<T>(exception);
-            }
-        }
 
+        //TODO consider returning the stream - Disposing issues??
+        public async Task<string> GetFileAsync(Uri requestUri, string filePath)
+        {
+            _logger?.LogRequest(requestUri);
+            if (_delay.Exist)
+                await Task.Delay(_delay.Value);
+            var response = await Client.GetAsync(requestUri);
+            LogHttpResponse(response);
+
+            using (var ms = await response.Content.ReadAsStreamAsync())
+            {
+                using (var fs = File.Create(filePath))
+                {
+                    ms.Seek(0, SeekOrigin.Begin);
+                    ms.CopyTo(fs);
+                }
+            }
+            return filePath;
+        }
         private void LogHttpRequest(HttpRequestMessage request)
         {
             _logger?.LogRequest(request);
