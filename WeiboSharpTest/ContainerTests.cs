@@ -10,7 +10,7 @@ namespace WeiboSharpTest
     [TestClass]
     public class ContainerTests
     {
-        private const string ID = "1669879400";
+        private const string ID = "1831348402";
         private IWeiboApi _api;
 
         public ContainerTests()
@@ -22,6 +22,8 @@ namespace WeiboSharpTest
         public void TestGetUserByIdByAsyc()
         {
             var user = _api.ContainerProcessor.GetUserByIdAsync(ID).Result;
+            var name = user.Value.UserInfo.ScreenName;
+            Assert.AreEqual(name, "比尔盖茨");
         }
         [TestMethod]
         public void TestGetUserInfoByIdByAsyc()

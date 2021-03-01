@@ -15,24 +15,23 @@ namespace Experiment
         static void Main(string[] args)
         {
             string id = "1669879400";
-            string content = File.ReadAllText(@"C:\Users\timma\Desktop\http.txt");
+            string postId = "4154099588849643";
 
 
             var api = WeiboApiBuilder.CreateBuilder()
                 .UseLogger(new DebugLogger(LogLevel.Request))
                 .Build();
             var user = api.ContainerProcessor
-                .GetUserByIdAsync(id)
-                ;
+                .GetUserByIdAsync(id);
             var info = api.ContainerProcessor
                 .GetUserInfoByIdAsync(id);
             var page = api.ContainerProcessor
-                .GetUserPageById(id, 1);
-            //var bid = page.Value.Cards[0].Mblog.Bid;
+               .GetUserPageById(id, 1);
 
-            Task.WaitAll(user, info, page);
+            var status = api.StatusesProcessor
+                .ShowStatusAsync(postId);
 
-            //page.Result.Value.Cards[0].Mblog.
+            Task.WaitAll(user, info, page, status);
         }
     }
 }

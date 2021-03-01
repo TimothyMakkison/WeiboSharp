@@ -10,7 +10,9 @@ namespace WeiboSharpTest
     [TestClass]
     public class StatusesTests
     {
-        private const string ID = "1669879400";
+        private const string ID = "1831348402";
+        private const string STATUS_BID = "JFKXA9Hq7";
+        private const string EXPECTED_TITLE = "我被问到最多的一个问题是...";
         private IWeiboApi _api;
 
         public StatusesTests()
@@ -19,15 +21,14 @@ namespace WeiboSharpTest
         }
 
         [TestMethod]
-        public void TestGetUserByIdByAsyc()
+        public void TestGetStatus()
         {
-            var user = _api.ContainerProcessor.GetUserByIdAsync(ID).Result;
-        }
-        [TestMethod]
-        public void TestGetUserInfoByIdByAsyc()
-        {
-            var user = _api.ContainerProcessor.GetUserInfoByIdAsync(ID).Result;
-            Assert.IsTrue(user.Value.Cards.Count > 0);
+            var post = _api.StatusesProcessor.ShowStatusAsync(STATUS_BID).Result.Value;
+            var title = post.StatusTitle;
+            var userId = post.User.Id;
+
+            Assert.AreEqual(EXPECTED_TITLE, title);
+            Assert.AreEqual(ID, userId.ToString());
         }
     }
 }
