@@ -38,11 +38,7 @@ namespace WeiboSharp.API.Processors
             _processorHelper = processorHelper;
         }
 
-        /// <summary>
-        /// Gets Weibo content (weibo post) by mid or id.
-        /// </summary>
-        /// <param name="identifier">Either alphanumeric mid or long id.</param>
-        /// <returns></returns>
+       
         public async Task<IResult<StatusShowResponse>> ShowStatusAsync(string identifier)
         {
             return await _processorHelper.HttpTryDo(async () =>
