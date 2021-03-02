@@ -48,7 +48,7 @@ namespace WeiboSharp.API.Processors
                 Uri uri = new Uri(url);
 
                 var response = await _httpRequestProcessor.GetAsync(uri);
-                return await response.ConvertResponseAsync<ContainerUserResponse>();
+                return await response.ConvertResponseAsBaseRespAsync<ContainerUserResponse>();
             });
         }
 
@@ -61,11 +61,11 @@ namespace WeiboSharp.API.Processors
 
                 var response = await _httpRequestProcessor.GetAsync(uri);
                 var content = await response.Content.ReadAsStringAsync();
-                return await response.ConvertResponseAsync<ContainerInfoResponse>();
+                return await response.ConvertResponseAsBaseRespAsync<ContainerInfoResponse>();
             });
         }
 
-        public async Task<IResult<ContainerPageResponse>> GetUserPageById(string uid, int page)
+        public async Task<IResult<ContainerPageResponse>> GetUserPageAsync(string uid, int page)
         {
             return await _processorHelper.HttpTryDo(async () =>
             {
@@ -73,7 +73,7 @@ namespace WeiboSharp.API.Processors
                 Uri uri = new Uri(url);
 
                 var response = await _httpRequestProcessor.GetAsync(uri);
-                return await response.ConvertResponseAsync<ContainerPageResponse>();
+                return await response.ConvertResponseAsBaseRespAsync<ContainerPageResponse>();
             });
         }
     }

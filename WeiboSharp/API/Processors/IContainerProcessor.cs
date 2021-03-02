@@ -10,6 +10,6 @@ namespace WeiboSharp.API.Processors
 
         Task<IResult<ContainerInfoResponse>> GetUserInfoByIdAsync(string uid);
 
-        Task<IResult<ContainerPageResponse>> GetUserPageById(string uid, int page);
+        Task<IResult<ContainerPageResponse>> GetUserPageAsync(string uid, int page);
     }
 }

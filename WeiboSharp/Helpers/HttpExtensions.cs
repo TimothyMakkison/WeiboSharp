@@ -47,7 +47,7 @@ namespace WeiboSharp.Helpers
         }
 
         //TODO Create TryConvert - takes response and T and tries to convert response content to T if status is Ok
-        public async static Task<IResult<T>> ConvertResponseAsync<T>(this HttpResponseMessage httpResponse)
+        public async static Task<IResult<T>> ConvertResponseAsBaseRespAsync<T>(this HttpResponseMessage httpResponse)
         {
             if (httpResponse.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -57,6 +57,17 @@ namespace WeiboSharp.Helpers
                 return value.Ok == 1 ? Result.Success(value.Data) :
                     Result.Fail<T>($"Status code returned OK but content returned fail with the values:" +
                     $"\n ok: {value.Ok}, msg: {value.Message}");
+            }
+            return Result.Fail<T>("Did not respond with okay");
+        }
+        public async static Task<IResult<T>> ConvertResponseAsync<T>(this HttpResponseMessage httpResponse)
+        {
+            if (httpResponse.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var content = await httpResponse.Content.ReadAsStringAsync();
+                var value = JsonConvert.DeserializeObject<T>(content);
+
+                return Result.Success(value);
             }
             return Result.Fail<T>("Did not respond with okay");
         }
