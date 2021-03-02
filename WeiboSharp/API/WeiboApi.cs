@@ -136,18 +136,5 @@ namespace WeiboSharp.API
         {
             return _user;
         }
-
-        ///// <summary>
-        /////     Get currently logged in user info asynchronously
-        ///// </summary>
-        ///// <returns>
-        /////     <see cref="T:InstagramApiSharp.Classes.Models.InstaCurrentUser" />
-        ///// </returns>
-        //public async Task<IResult<WeiboCurrentUser>> GetCurrentUserAsync()
-        //{
-        //    //ValidateUser();
-        //    //ValidateLoggedIn();
-        //    //return await _userProcessor.GetCurrentUserAsync();
-        //}
     }
 }
