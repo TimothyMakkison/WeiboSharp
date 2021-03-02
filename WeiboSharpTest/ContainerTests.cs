@@ -31,5 +31,11 @@ namespace WeiboSharpTest
             var user = _api.ContainerProcessor.GetUserInfoByIdAsync(ID).Result;
             Assert.IsTrue(user.Value.Cards.Count > 0);
         }
+        [TestMethod]
+        public void TestGetUserPageAsyc()
+        {
+            var page = _api.ContainerProcessor.GetUserPageAsync(ID,1).Result;
+            Assert.IsTrue(page.Value.Cards.Count > 0);
+        }
     }
 }
