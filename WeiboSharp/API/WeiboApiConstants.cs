@@ -16,8 +16,8 @@
 
         //Statuses
         public const string STATUS_GET_POST = "https://m.weibo.cn/statuses/show?id={0}";
-
         public const string STATUS_GET_EXTENDED_POST = BASE_M_URL + STATUS + "/extend?id={0}";
+        public const string STATUS_GET_REPOST_TIMELINE = BASE_M_URL + STATUS + "/repostTimeline?id={0}&page={1}";
 
         // Timeline
 

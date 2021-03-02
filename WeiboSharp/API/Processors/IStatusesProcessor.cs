@@ -18,6 +18,8 @@ namespace WeiboSharp.API.Processors
         /// </summary>
         /// <param name="identifier">Either alphanumeric bid or long id.</param>
         /// <returns>Weibo status in <see cref="StatusExtendedShowReponse"/> form. </returns>
-        Task<IResult<StatusExtendedShowResponse>> ShowExtendedStatusAsync(string identifier);
+        Task<IResult<StatusExtendedShowResponse>> GetExtendedStatusAsync(string identifier);
+
+        Task<IResult<StatusRepostTimelineResponse>> GetStatusRepostTimelineAsync(string identifier, int page);
     }
 }

@@ -51,7 +51,7 @@ namespace WeiboSharp.API.Processors
             });
         }
 
-        public async Task<IResult<StatusExtendedShowResponse>> ShowExtendedStatusAsync(string identifier)
+        public async Task<IResult<StatusExtendedShowResponse>> GetExtendedStatusAsync(string identifier)
         {
             return await _processorHelper.HttpTryDo(async () =>
             {
@@ -62,5 +62,17 @@ namespace WeiboSharp.API.Processors
                 return await response.ConvertResponseAsync<StatusExtendedShowResponse>();
             });
         }
+        public async Task<IResult<StatusRepostTimelineResponse>> GetStatusRepostTimelineAsync(string identifier, int page)
+        {
+            return await _processorHelper.HttpTryDo(async () =>
+            {
+                var url = string.Format(WeiboApiConstants.STATUS_GET_REPOST_TIMELINE, identifier,page);
+                Uri uri = new Uri(url);
+
+                var response = await _httpRequestProcessor.GetAsync(uri);
+                return await response.ConvertResponseAsBaseRespAsync<StatusRepostTimelineResponse>();
+            });
+        }
+
     }
 }
