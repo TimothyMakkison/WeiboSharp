@@ -26,12 +26,15 @@ namespace Experiment
             var info = api.ContainerProcessor
                 .GetUserInfoByIdAsync(id);
             var page = api.ContainerProcessor
-               .GetUserPageById(id, 1);
+               .GetUserPageAsync(id, 1);
 
             var status = api.StatusesProcessor
                 .ShowStatusAsync(postId);
 
-            Task.WaitAll(user, info, page, status);
+            var post = api.StatusesProcessor.ShowExtendedStatusAsync("JFKXA9Hq7");
+
+
+            Task.WaitAll(user, info, page, status, post);
         }
     }
 }

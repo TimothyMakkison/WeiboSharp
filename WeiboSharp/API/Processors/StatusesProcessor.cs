@@ -43,11 +43,23 @@ namespace WeiboSharp.API.Processors
         {
             return await _processorHelper.HttpTryDo(async () =>
             {
-                var url = string.Format(WeiboApiConstants.STATUS_GET_CONTENT, identifier);
+                var url = string.Format(WeiboApiConstants.STATUS_GET_POST, identifier);
                 Uri uri = new Uri(url);
 
                 var response = await _httpRequestProcessor.GetAsync(uri);
-                return await response.ConvertResponseAsync<StatusShowResponse>();
+                return await response.ConvertResponseAsBaseRespAsync<StatusShowResponse>();
+            });
+        }
+
+        public async Task<IResult<StatusExtendedShowResponse>> ShowExtendedStatusAsync(string identifier)
+        {
+            return await _processorHelper.HttpTryDo(async () =>
+            {
+                var url = string.Format(WeiboApiConstants.STATUS_GET_EXTENDED_POST, identifier);
+                Uri uri = new Uri(url);
+
+                var response = await _httpRequestProcessor.GetAsync(uri);
+                return await response.ConvertResponseAsync<StatusExtendedShowResponse>();
             });
         }
     }
