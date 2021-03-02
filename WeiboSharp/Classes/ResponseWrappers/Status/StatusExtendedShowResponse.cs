@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
 
 namespace WeiboSharp.Classes.ResponseWrappers
 {
@@ -1017,5 +1016,4 @@ namespace WeiboSharp.Classes.ResponseWrappers
         [JsonProperty("desc")]
         public string Desc { get; set; }
     }
-
 }
