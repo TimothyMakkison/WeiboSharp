@@ -30,5 +30,15 @@ namespace WeiboSharpTest
             Assert.AreEqual(EXPECTED_TITLE, title);
             Assert.AreEqual(ID, userId.ToString());
         }
+
+        [TestMethod]
+        public void TestGetExtendedStatus()
+        {
+            var post = _api.StatusesProcessor.ShowExtendedStatusAsync(STATUS_BID).Result.Value;
+            //var userId = post.User.Id;
+
+            //Assert.AreEqual(EXPECTED_TITLE, title);
+            //Assert.AreEqual(ID, userId.ToString());
+        }
     }
 }
