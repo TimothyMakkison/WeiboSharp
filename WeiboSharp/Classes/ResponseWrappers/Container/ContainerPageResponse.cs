@@ -193,7 +193,7 @@ namespace WeiboSharp.Classes.ResponseWrappers
         public MblogPageInfo PageInfo { get; set; }
 
         [JsonProperty("pics", NullValueHandling = NullValueHandling.Ignore)]
-        public List<MblogPic> Pics { get; set; }
+        public List<DataPic> Pics { get; set; }
 
         [JsonProperty("bid")]
         public string Bid { get; set; }
@@ -262,24 +262,6 @@ namespace WeiboSharp.Classes.ResponseWrappers
         public Urls Urls { get; set; }
     }
 
-    public partial class MblogPic
-    {
-        [JsonProperty("pid")]
-        public string Pid { get; set; }
-
-        [JsonProperty("url")]
-        public Uri Url { get; set; }
-
-        [JsonProperty("size")]
-        public string Size { get; set; }
-
-        [JsonProperty("geo")]
-        public PurpleGeo Geo { get; set; }
-
-        [JsonProperty("large")]
-        public PurpleLarge Large { get; set; }
-    }
-
     public partial class RetweetedStatus
     {
         [JsonProperty("visible")]
@@ -340,7 +322,7 @@ namespace WeiboSharp.Classes.ResponseWrappers
         public User User { get; set; }
 
         [JsonProperty("picStatus")]
-        public long PicStatus { get; set; }
+        public string PicStatus { get; set; }
 
         [JsonProperty("reposts_count")]
         public long RepostsCount { get; set; }
