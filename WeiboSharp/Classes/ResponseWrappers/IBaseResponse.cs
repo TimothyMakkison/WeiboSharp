@@ -1,7 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace WeiboSharp.Classes.ResponseWrappers
 {
@@ -9,6 +6,9 @@ namespace WeiboSharp.Classes.ResponseWrappers
     {
         [JsonProperty("ok")]
         int Ok { get; set; }
+
+        [JsonProperty("msg")]
+        string Message { get; set; }
 
         [JsonProperty("data")]
         T Data { get; set; }
