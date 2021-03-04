@@ -74,5 +74,16 @@ namespace WeiboSharp.API.Processors
             });
         }
 
+        public async Task<IResult<StatusShowCommentsResponse>> GetStatusComments(string identifier, int page)
+        {
+            return await _processorHelper.HttpTryDo(async () =>
+            {
+                var url = string.Format(WeiboApiConstants.STATUS_GET_POST_COMMENTS, identifier, page);
+                Uri uri = new Uri(url);
+
+                var response = await _httpRequestProcessor.GetAsync(uri);
+                return await response.ConvertResponseAsBaseRespAsync<StatusShowCommentsResponse>();
+            });
+        }
     }
 }

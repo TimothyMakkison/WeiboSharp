@@ -7,6 +7,7 @@
 
         public const string CONTAINER = "/container";
         public const string STATUS = "/statuses";
+        public const string COMMENTS = "/comments";
 
         // Container
         public const string CONTAINER_GET_USER = BASE_M_URL + CONTAINER + "/getIndex?containerid=100505{0}";
@@ -18,6 +19,7 @@
         public const string STATUS_GET_POST = "https://m.weibo.cn/statuses/show?id={0}";
         public const string STATUS_GET_EXTENDED_POST = BASE_M_URL + STATUS + "/extend?id={0}";
         public const string STATUS_GET_REPOST_TIMELINE = BASE_M_URL + STATUS + "/repostTimeline?id={0}&page={1}";
+        public const string STATUS_GET_POST_COMMENTS = BASE_M_URL + COMMENTS + "/show?id={0}&page={1}";
 
         // Timeline
 
