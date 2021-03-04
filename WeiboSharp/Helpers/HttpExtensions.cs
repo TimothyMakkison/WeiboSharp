@@ -60,6 +60,7 @@ namespace WeiboSharp.Helpers
             }
             return Result.Fail<T>("Did not respond with okay");
         }
+
         public async static Task<IResult<T>> ConvertResponseAsync<T>(this HttpResponseMessage httpResponse)
         {
             if (httpResponse.StatusCode == System.Net.HttpStatusCode.OK)
