@@ -35,10 +35,20 @@ namespace WeiboSharpTest
         public void TestGetExtendedStatus()
         {
             var post = _api.StatusesProcessor.GetExtendedStatusAsync(STATUS_BID).Result.Value;
-            //var userId = post.User.Id;
+            var title = post.StatusTitle;
+            var userId = post.User.Id;
 
-            //Assert.AreEqual(EXPECTED_TITLE, title);
-            //Assert.AreEqual(ID, userId.ToString());
+            Assert.AreEqual(EXPECTED_TITLE, title);
+            Assert.AreEqual(ID, userId.ToString());
+        }
+
+        [TestMethod]
+        public void TestGetPostComments()
+        {
+            var post = _api.StatusesProcessor.GetStatusComments(STATUS_BID,1).Result.Value;
+            var count = post.Data.Count;
+
+            Assert.IsTrue(count>0);
         }
     }
 }
